@@ -1,0 +1,9 @@
+{
+  "name": "Raikg Rhirno Server",
+  "version": "1.0.0",
+  "build": "0.0.3.15",
+  "description": "Ligth implement: HTTP, HTTPS, FTP and DNS Servers",
+  "main": "bin/raikg.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}
