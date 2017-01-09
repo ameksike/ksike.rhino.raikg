@@ -12,7 +12,6 @@ class Front extends Raikg.Module.Base
     constructor(cfg = false, name=false, engine=false) {
         super(cfg, name, engine);
         this.engine.assist.get("ksike/bre").configure(this.engine.cfg);
-        this.log = this.engine.cfg.log ? this.log = this.engine.assist.get("ksike/router").normalize(this.engine.cfg.log) : false;
     }
 
     analyze(request, response) {
@@ -34,7 +33,7 @@ class Front extends Raikg.Module.Base
                 this.engine.evm.emit('onFileRequest', [rsc, request, response]);
             }
         }else{
-            console.log("FRONT: NOT isDirectory NI IDER");
+            console.log("FRONT: NOT isDirectory");
             this.engine.evm.play('onRequest');
         }
     }
@@ -59,16 +58,22 @@ class Front extends Raikg.Module.Base
 
     handFile(rsc, response){
         var extname = require('path').extname(rsc).substr(1);
-        if(this.engine.cfg.bind[extname]){
-            var bi = this.bin(extname);
-            var ps = this.engine.assist.get("ksike/ipc").start(bi, [rsc], false );
-            ps.stdout.pipe(response);
-            if(this.log){
-                console.log(this.log + extname + ".log");
-                ps.stderr.pipe(require('fs').createWriteStream(this.log + extname + ".log"));
+        if(this.engine.cfg){
+            if(this.engine.cfg.bind){
+                if(this.engine.cfg.bind[extname]){
+                    var bi = this.bin(extname);
+                    var ps = this.engine.assist.get("ksike/ipc").start(bi, [rsc], false );
+                    ps.stdout.pipe(response);
+                    if(this.engine.logp){
+                        console.log(this.engine.logp + extname + ".log");
+                        ps.stderr.pipe(require('fs').createWriteStream(this.engine.logp + extname + ".log"));
+                    }
+                }else{
+                    this.sendFile(rsc, response);
+                }
+            }else{
+                this.sendFile(rsc, response);
             }
-        }else{
-            this.sendFile(rsc, response);
         }
     }
 
@@ -102,7 +107,6 @@ class Front extends Raikg.Module.Base
         path = (path.substr(-1) !== '/' && path.substr(-1) !== '\\') ? path + require('path').sep : path;
         for (var value of this.engine.cfg.index )
         {
-            console.log("getIndex <<<<< " + path + value);
             if (require('fs').existsSync(path + value))
                 return path + value;
         }
@@ -110,7 +114,7 @@ class Front extends Raikg.Module.Base
     }
 
     onStart() {
-        console.log("onStart at port: " + this.engine.server.address().port);
+        console.log("start server at port: " + this.engine.server.address().port);
     }
 
     onRequest(request, response){

@@ -12,6 +12,7 @@ class Server
         require(__dirname + '/Module.js').Main;
         this.path = __dirname + "/../../";
         if(opt) this.configure(opt);
+        this.logf = this.path + "../../log/server.log";
     }
 
     configure(opt=false) {
@@ -20,8 +21,20 @@ class Server
     }
 
     vh(path) {
-        var cfg = require('fs').readFileSync(path);
-        return JSON.parse(cfg);
+        if(require('fs').existsSync(path)){
+            var cfg = require('fs').readFileSync(path);
+            var mtd = require('path').parse(path);
+            try{
+                cfg = JSON.parse(cfg);
+                cfg['name'] = mtd['name'];
+                return cfg;
+            }catch (error){
+                this.log("ERROR: Bat format on virtualhost: '" + path + "'");
+            }
+        }else{
+            this.log("ERROR: no such virtualhost: '" + path + "'");
+        }
+        return false;
     }
 
     mod(vh, assist){
@@ -31,8 +44,16 @@ class Server
     }
 
     start(req, assist) {
-        var vh = this.vh(req["REQUEST"][0]);
-        this.mod(vh, assist).start(req, assist);
+        var nm = req["REQUEST"][0] ? req["REQUEST"][0] : '';
+        var vh = this.vh(nm);
+        if(vh){
+            this.mod(vh, assist).start(req, assist);
+        }
+    }
+
+    log(data){
+        data = typeof (data) === 'string' ? data : JSON.encode(data);
+        require('fs').writeFileSync(this.logf, data);
     }
 }
 exports.Main = Server;

@@ -56,6 +56,7 @@ class Main
             req.engine = this;
             this.evm = this.assist.new("ksike/event").configure( {"evs": this.cfg['mods'], "req": req} );
         }
+        this.logp = this.cfg.log ? this.assist.get("ksike/router").normalize(this.cfg.log) : this.path + "../../log/";
         this.evm.emit('onConfigure', [this, this.assist]);
         return this;
     }
@@ -85,6 +86,7 @@ class Main
 
     onStart(server) {
         global['_SERVER'] = server;
+        this.log("Start server at port: " + this.server.address().port);
         this.evm.emit('onStart', [server, this.assist]); 
     }
 
@@ -120,6 +122,12 @@ class Main
 
     onError(error) {
         this.evt.emit('onError', [error, this.assist]);
+    }
+
+    log(data, filename=false){
+        filename = filename ? filename : this.cfg['name'];
+        data = typeof (data) === 'string' ? data : JSON.encode(data);
+        require('fs').writeFileSync(this.logp + filename + '.log', data);
     }
 }
 exports.Main = Main;
