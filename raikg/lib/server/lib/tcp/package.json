@@ -1,0 +1,9 @@
+{
+  "name": "Raikg Rhirno TCP Server",
+  "version": "0.0.0",
+  "build": "0.0.0.0",
+  "description": "Ligth implement TCP Servers",
+  "main": "src/server/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

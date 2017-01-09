@@ -1,0 +1,9 @@
+{
+  "name": "Raikg Rhirno DNS Server",
+  "version": "0.0.0",
+  "build": "0.0.0.0",
+  "description": "Ligth implement DNS Servers",
+  "main": "src/server/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

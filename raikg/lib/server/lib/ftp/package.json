@@ -1,0 +1,9 @@
+{
+  "name": "Raikg Rhirno FTP Server",
+  "version": "0.0.0",
+  "build": "0.0.0.0",
+  "description": "Ligth implement FTP Servers",
+  "main": "src/server/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

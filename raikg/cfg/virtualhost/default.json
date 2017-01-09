@@ -1,0 +1,80 @@
+{
+  "mode": "http",
+  "host": "0.0.0.0",
+  "port": 3000,
+  "www": {
+    "windows": "D:\\users\\tony\\proj\\kr_sdk",
+    "linux":  "/media/data/users/tony/proj/kr_sdk"
+  },
+  "log": "log/",
+  "index": [ "index.html", "index.php", "index.nsp" ],
+  "mods":{
+    "onConfigure":[{
+      "target": "krhino",
+      "cfg": {
+        "ns": "lib/vendor/ksike/",
+        "cfg": {
+          "load" : true,
+          "path" : "/cfg/config.json"
+        }
+      }
+    }],
+    "onRequest": [ "front", "krhino" ],
+    "onStart": ["front"],
+    "onDirRequest": ["krhino", "front"],
+    "onFileRequest": ["front"]
+  },
+  "bind":{
+    "php": ["php", "5.4.25"],
+    "njs": "nodejs",
+    "nsp": "nodejs",
+    "py": "python"
+  },
+  "bins":{
+    "php":{
+      "default": {
+        "version":"5.4.25"
+      },
+      "5.3.27":{
+        "x86":{
+          "windows": "D:\\users\\tony\\proj\\kr_sdk\\bin\\re\\php/5.3.27/x86/windows/php.exe"
+        }
+      },
+      "5.4.25":{
+        "x86":{
+          "windows": "D:\\users\\tony\\proj\\kr_sdk\\bin\\re\\php/5.4.25/x86/windows/php.exe"
+        }
+      }
+    },
+    "nodejs":{
+      "default": {
+        "version":"6.9.1",
+        "architecture": "x86"
+      },
+      "6.9.1":{
+        "x86":{
+          "windows": "nodejs/6.9.1/x86/windows/node.exe",
+          "linux": "nodejs/6.9.1/x86/linux/bin/node"
+        }
+      },
+      "7.3.0":{
+        "x86":{
+          "windows": "nodejs/7.3.0/x86/windows/node.exe",
+          "linux": "nodejs/7.3.0/x86/linux/bin/node"
+        }
+      }
+    },
+    "python":{
+      "default": {
+        "version":"3.3.3",
+        "architecture": "x86"
+      },
+      "3.3.3":{
+        "x86":{
+          "windows": "python/3.3.3/x86/windows/python.exe",
+          "linux": "python/3.3.3/x86/linux/python"
+        }
+      }
+    }
+  }
+}

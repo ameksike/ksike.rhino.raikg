@@ -1,0 +1,79 @@
+{
+  "raikg":{
+    "virtualhost": "cfg/virtualhost/"
+  },
+  "ksike":{
+    "idiom": { "default": "en" },
+    "bre":{
+      "nodejs": {
+        "modules": "../node_modules/"
+      },
+      "vendor":[ "ksike/koop" ]
+    },
+    "router":{
+      "mode": ["equal", "first", "finds"],
+      "path": {
+        "root": "",
+        "scope": [
+          "lib/"
+        ],
+        "domain": [
+          "src/server/",
+          "src/common/",
+          "src/",
+          ""
+        ],
+        "index": [
+          "Main.js",
+          "Index.js",
+          "index.js"
+        ]
+      },
+      "request":{
+        "default":{
+          "type": "request",
+          "controller": "raikg/service",
+          "action": "status"
+        },
+        "pattern":{
+          "/ksike": {
+            "namespace": "ksike/"
+          },
+          "/ksike/help": {
+            "namespace": "ksike/",
+            "controller": "help",
+            "action": "doc"
+          },
+          "/help": {
+            "namespace": "ksike/",
+            "controller": "help",
+            "action": "doc"
+          },
+          "/service": {
+            "namespace": "raikg/",
+            "controller": "service"
+          },
+          "/raikg": {
+            "namespace": "raikg/"
+          }
+        }
+      },
+      "locate":{
+        "pattern":{
+          "ksike": "../ksike/",
+          "raikg": "."
+        }
+      }
+    },
+    "engine":{
+      "bind":{
+        "onConfigure": ["ksike/bre", "ksike/response", "ksike/view"],
+        "onRequest": ["ksike/request"],
+        "onDispatch": ["ksike/front"],
+        "onResponse": ["ksike/response"],
+        "onError": ["ksike/error"]
+      },
+      "workflow":["onStart", "onRequest", "onAccess", "onDispatch", "onRender", "onResponse", "onStop"]
+    }
+  }
+}

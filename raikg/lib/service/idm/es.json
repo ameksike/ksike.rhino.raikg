@@ -1,0 +1,8 @@
+{
+	"name":"service",
+	"start": "Iniciar el servidor Raikg especificado el listado de virtualhost a utilizar.",
+	"stop": "Detener el servidor Raikg especificado el listado de virtualhost a utilizar.",
+	"restart": "Reiniciar el servidor Raikg.",
+	"status": "Obtener el estado de cada uno de los virtualhost disponibles.",
+	"list": "Listar los virtualhost disponibles."
+}
