@@ -11,7 +11,7 @@
 @set PATH=%PATH%;%~dp0
 @set PATHL=%~dp0
 @set KSRP=%PATHL%../../../../../../../../
-@set NODE=%KSRP%bin/re/nodejs/windows/node.exe
+@set NODE=%KSRP%bin/re/nodejs/7.3.0/x64/windows/node.exe
 @set KSRS=%PATHL%../../../../../lib/server/bin/raikg.js
 
 %NODE% %KSRS% %*

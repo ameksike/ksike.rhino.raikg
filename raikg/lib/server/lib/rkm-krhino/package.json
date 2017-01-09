@@ -1,9 +1,0 @@
-{
-  "name": "Raikg Rhirno Server",
-  "version": "1.0.0",
-  "build": "0.0.3.15",
-  "description": "Ligth Publish Static Files",
-  "main": "Main.js",
-  "author": "Antonio Membrides Espinosa",
-  "license": "GPL"
-}

@@ -12,7 +12,7 @@ SCRIPT=$(readlink -f $0)
 PATHL=`dirname $SCRIPT`
 
 export KSRP=$PATHL/../../../../../../../../
-NODE=$PATHL/../../../../../../../../bin/re/nodejs/linux/node
+NODE=$PATHL/../../../../../../../../bin/re/nodejs/7.3.0/x64/linux/bin/node
 KSRS=$PATHL/../../../../../lib/server/bin/raikg.js
 
 $NODE $KSRS $*
