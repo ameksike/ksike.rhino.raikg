@@ -1,9 +1,10 @@
 {
   "mode": "http",
   "host": "0.0.0.0",
-  "port": 3000,
+  "port": 3005,
   "www": {
-    "windows": "D:\\users\\tony\\proj\\kr_sdk",
+    "windows2": "D:\\users\\tony\\proj\\kr_sdk",
+    "windows": "D:\\users\\tony\\proj\\kr_sdk\\lib\\vendor\\demo\\myapp",
     "linux":  "/media/data/users/tony/proj/kr_sdk"
   },
   "log": "log/",
