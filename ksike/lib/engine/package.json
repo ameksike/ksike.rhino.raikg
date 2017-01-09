@@ -1,0 +1,9 @@
+{
+  "name": "Ksike_Rhino_Engine",
+  "version": "1.0.0",
+  "build": "0.0.3.15",
+  "description": "Ligth implement: Namespace Admin",
+  "main": "src/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

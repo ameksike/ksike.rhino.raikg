@@ -1,0 +1,11 @@
+{
+  "name": "idiom",
+  "version": "1.0",
+  "description": "",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL v3.0",
+  "main": "src/server/Main.js",
+  "dependencies": "",
+  "keywords": [],
+  "bugs": {}
+}

@@ -1,0 +1,12 @@
+{
+  "author": {
+    "name": "Antonio Membrides Espinosa"
+  },
+  "dev_dependencies": {
+	"nodejs": "^6.9.3"
+  },
+  "description": "SQL Server Driver for Ksike/Secretary Rhino",
+  "main": "src/Main.js",
+  "license": "GPL",
+  "version": "1.0.0"
+}

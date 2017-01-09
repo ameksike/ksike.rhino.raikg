@@ -1,0 +1,9 @@
+{
+  "name": "Ksike_Rhino_Ipc",
+  "version": "1.0.0",
+  "build": "0.0.3.15",
+  "description": "Implement Inter Process Cominication",
+  "main": "src/server/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

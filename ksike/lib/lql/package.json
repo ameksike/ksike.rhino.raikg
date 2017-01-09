@@ -1,0 +1,9 @@
+{
+  "name": "Ksike_Rhino_Loader",
+  "version": "1.0.0",
+  "build": "0.0.3.15",
+  "description": "Implement Light Query Lenguage",
+  "main": "src/server/Main.js",
+  "author": "Antonio Membrides Espinosa",
+  "license": "GPL"
+}

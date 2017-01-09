@@ -1,0 +1,45 @@
+{
+	"name":"mod_std",
+	"description": "Construccion de modulos estandar",
+	"prompt":{
+		"name": {
+			"label": "Especifique el nombre del modulo",
+			"value": true
+		},
+		"author": {
+			"label": "Especifique el nombre del autor del modulo",
+			"value": false
+		},
+		"version": {
+			"label": "Especifique la version del modulo",
+			"value": "0.1"
+		},
+		"description": {
+			"label": "Especifique la descripcion del modulo",
+			"value": false
+		}
+	},
+	"build":{
+		"dir": [ "idm/", "cfg/", "src/", "src/server/", "src/client/", "src/common/", "mtd/" ],
+		"file": [{
+				"type": "main",
+				"tpl": "main.js",
+				"out": "src/server/Main.js"
+			},{
+				"tpl": "cfg.config.json",
+				"out": "cfg/config.json"
+			},{
+				"tpl": "idm.es.json",
+				"out": "idm/es.json"
+			},{
+				"tpl": "idm.en.json",
+				"out": "idm/en.json"
+			},{
+			"tpl": "mtd.metadata.json",
+			"out": "mtd/metadata.json"
+		},{
+			"tpl": "package.json",
+			"out": "package.json"
+		}]
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "author": {
+    "name": "Antonio Membrides Espinosa"
+  },
+  "dev_dependencies": {
+	"sqlite3": "^@3.1.7"
+  },
+  "description": "SQLite Driver for Ksike/Secretary Rhino",
+  "main": "src/Main.js",
+  "license": "GPL",
+  "version": "1.0.0"
+}

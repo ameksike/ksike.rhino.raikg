@@ -1,0 +1,15 @@
+{
+  "author": {
+    "name": "Antonio Membrides Espinosa"
+  },
+  "dependencies": {
+    "tar": "^1.0.0",
+    "zlib": "^1.0.0",
+    "fstream": "^1.0.0",
+    "jszip": "^1.0.0"
+  },
+  "description": "Detect global variables in JavaScript using acorn",
+  "main": "src/Main.js",
+  "license": "MIT",
+  "version": "1.0.9"
+}

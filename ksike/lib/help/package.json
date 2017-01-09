@@ -1,0 +1,11 @@
+{
+  "name": "help",
+  "version": "1.0",
+  "description": "",
+  "author": " ",
+  "license": "GPL v3.0",
+  "main": "src/server/Main.js",
+  "dependencies": "[object Object]",
+  "keywords": [],
+  "bugs": {}
+}

@@ -1,0 +1,16 @@
+{
+  "author": {
+    "name": "Antonio Membrides Espinosa"
+  },
+  "dev_dependencies": {
+	"nodejs": "^6.9.3"
+  },
+  "description": "Light data access layer, provides simplified access to data stored in persistent storage.",
+  "main": "src/server/Main.js",
+  "license": "GPL",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ameksike/secretary-rhino.git"
+  }
+}
