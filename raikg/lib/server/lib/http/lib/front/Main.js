@@ -126,7 +126,7 @@ class Front extends Raikg.Module.Base
     }
 
     onError(error, request, response, assist){
-        this.engine.log(error);
+        this.engine.log({ 'name': error.name, 'message': error.message});
         if(response) response.end('Ups an error has occurred...');
         console.log(error);
     }
