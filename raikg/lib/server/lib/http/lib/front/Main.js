@@ -94,7 +94,7 @@ class Front extends Raikg.Module.Base
         this.engine.evm.stop("onRequest");
         var rs = require('fs').createReadStream(file);
         rs.on('error', function (error) {
-            _this.engine.onError.apply(_this.engine, arguments);
+            _this.engine.onError.apply(_this.engine, [error, _this.engine.rsc.request, _this.engine.rsc.response, _this.engine.assist]);
         });
         response.writeHead(200);
         rs.pipe(response);
@@ -126,7 +126,7 @@ class Front extends Raikg.Module.Base
     }
 
     onError(error, request, response, assist){
-        this.engine.log({ 'name': error.name, 'message': error.message});
+        this.engine.log({ 'name': error.name, 'message': error.message, 'file': error.fileName, 'line': error.lineNumber, 'stack': error.stack });
         if(response) response.end('Ups an error has occurred...');
         console.log(error);
     }
