@@ -34,7 +34,7 @@ class Ler
 }
 class Main
 {
-    constructor(opt) {
+    constructor(opt=false) {
         this.http = require('http');
         this.cfg = { "port": 3003 };
         this.evm = false;
@@ -43,7 +43,7 @@ class Main
             "request": false,
             "response": false
         };
-        if(opt) this.configure(opt, process);
+        this.configure(opt, process);
     }
 
     configure(opt) {
@@ -70,10 +70,22 @@ class Main
         var _this = this;
         this.http.createServer(function (request, response) {
             _this.server = this;
-            _this.onRequest.apply(_this, arguments);
+            _this.rsc.request = request;
+            _this.rsc.response = response;
+            global['_REQUEST'] = request;
+            global['_RESPONSE'] = response;
+            try{
+                _this.onRequest.apply(_this, arguments);
+            }catch (error){
+                _this.onError.apply(_this, [error]);
+            }
         }).listen(this.cfg.port, function () {
             _this.server = this;
-            _this.onStart.apply(_this, [this]);
+            try{
+                _this.onStart.apply(_this, [this]);
+            }catch (error){
+                _this.onError.apply(_this, [error]);
+            }
         });
     }
 
@@ -95,11 +107,6 @@ class Main
     }
 
     onRequest(request, response) {
-        global['_REQUEST'] = request;
-        global['_RESPONSE'] = request;
-        this.rsc.response = response;
-        this.rsc.request = request;
-        
         if(request.method.toLowerCase() == "post"){
             var _this = this;
             var data = '';
@@ -121,12 +128,13 @@ class Main
     }
 
     onError(error) {
-        this.evt.emit('onError', [error, this.assist]);
+        this.evm.emit('onError', [error, this.rsc.request, this.rsc.response, this.assist]);
     }
 
     log(data, filename=false){
         filename = filename ? filename : this.cfg['name'];
         data = typeof (data) === 'string' ? data : JSON.encode(data);
+        console.log(this.logp + filename + '.log');
         require('fs').writeFileSync(this.logp + filename + '.log', data);
     }
 }

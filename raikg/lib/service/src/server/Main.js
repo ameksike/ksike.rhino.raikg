@@ -10,8 +10,6 @@
 class Main {
     constructor(assist) {
         this.cache = { };
-        console.log(assist.get("ksike/config").get("root").raikg.virtualhost);
-        console.log(assist.get("ksike/router").path("root"));
         this.path = assist.get("ksike/router").normalize(assist.get("ksike/config").get("root").raikg.virtualhost);
     }
 
@@ -25,7 +23,6 @@ class Main {
         this.srvReload(assist);
         if(! assist.get("ksike/ipc").status(this.cache[name]) ){
             var vhf = require('fs').existsSync(this.path + name + ".json" ) ?  this.path + name + ".json"  : this.path + name;
-			
             var pss = assist.get("ksike/ipc").start(this.srvRe(), [assist.get("ksike/router").path("root")+"bin/cli.js", "raikg:server:start", vhf]);
             this.cache[name] = pss.pid;
         }
@@ -48,11 +45,8 @@ class Main {
     }
 
     start(req, assist){
-		console.log('-----start-----------------');
         req["REQUEST"] = req["REQUEST"].length === 0 ? ["default"] : req["REQUEST"];
         for(var i in req["REQUEST"]){
-			console.log('----------------------'+i);
-			console.log('----------------------'+req["REQUEST"][i]);
             this.srvStart(req["REQUEST"][i], assist);
         }
         assist.get("ksike/config").save("raikg/service", "cache", this.cache);

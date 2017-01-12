@@ -19,7 +19,6 @@ class Front extends Raikg.Module.Base
         var www = this.engine.www();
         var rsc = www + url;
         console.log(rsc + " >> " + require('fs').existsSync(rsc));
-
         if (require('fs').existsSync(rsc)) {
             var sts = require('fs').statSync(rsc);
             if (sts.isDirectory()) {
@@ -65,7 +64,7 @@ class Front extends Raikg.Module.Base
                     var ps = this.engine.assist.get("ksike/ipc").start(bi, [rsc], false );
                     ps.stdout.pipe(response);
                     if(this.engine.logp){
-                        console.log(this.engine.logp + extname + ".log");
+                        //console.log(this.engine.logp + extname + ".log");
                         ps.stderr.pipe(require('fs').createWriteStream(this.engine.logp + extname + ".log"));
                     }
                 }else{
@@ -79,12 +78,11 @@ class Front extends Raikg.Module.Base
 
     bin(extname){
         var bin = false;
-
         if(this.engine.cfg.bind[extname]){
             var opt = typeof (this.engine.cfg.bind[extname]) === 'string' ? [this.engine.cfg.bind[extname]] : this.engine.cfg.bind[extname];
             bin = this.engine.assist.get("ksike/bre").bin.apply(this.engine.assist.get("ksike/bre"), opt);
             if(!bin && opt[0] === "nodejs"){
-                console.log("NodeJs version: " + process.version.substr(1));
+                //console.log("NodeJs version: " + process.version.substr(1));
                 return process.execPath;
             }
         }
@@ -125,6 +123,12 @@ class Front extends Raikg.Module.Base
             this.engine.evm.pause('onRequest');
             this.analyze(request, response);
         }
+    }
+
+    onError(error, request, response, assist){
+        this.engine.log(error);
+        if(response) response.end('Ups an error has occurred...');
+        console.log(error);
     }
 }
 exports.Main = Front;
